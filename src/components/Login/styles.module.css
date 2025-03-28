@@ -1,0 +1,91 @@
+.__container {
+    padding: 0 15px;
+    margin: 0 auto;
+    max-width: var(--maxWidth);
+}
+.title {
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--black);
+    text-align: center;
+}
+
+/*----login-------------------------------------------*/
+
+.login {
+    width: 100%;
+    height: 100%;
+    padding: 100px 0;
+}
+.login__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+}
+.form {
+    min-width: 500px;
+    padding: 40px 20px;
+    border: 2px solid var(--mainColor);
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.form h3 {
+    font-size: 32px;
+    font-weight: 600;
+}
+.form__error {
+    max-width: 400px;
+    text-align: justify;
+    color: red;
+    font-weight: 500;
+}
+.form__input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.form__input label {
+    font-size: 20px;
+    font-weight: 600;
+}
+.form__input input {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid var(--mainColor);
+    border-radius: 20px;
+}
+.form__button {
+    min-width: 200px;
+    background-color: var(--mainColor);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.form__text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.form__text__link {
+    font-weight: 500;
+    color: var(--underMainColor);
+}
+
+/*----media---------------------------------*/
+
+@media (max-width: 768px) {
+    .addProduct {
+        padding: 40px 0;
+    }
+    .form {
+        min-width: 0;
+        width: 100%;
+    }
+}
