@@ -1,0 +1,26 @@
+.__container {
+    padding: 0 15px;
+    margin: 0 auto;
+    max-width: var(--maxWidth);
+}
+.footer {
+    width: 100%;
+    background-color: var(--mainColor);
+    padding: 20px 0;
+}
+.footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--white);
+}
+.footer__logo {
+    font-size: 24px;
+    font-weight: 600;
+}
+.footer__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: end;
+}
