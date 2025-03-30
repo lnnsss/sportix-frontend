@@ -1,15 +1,15 @@
 import React from "react"
 import { Helmet } from "react-helmet";
-import Products from "../../Products/index.jsx";
+import Catalog from "../../Catalog/index.jsx";
 
-const ProductsPage = () => {
+const CatalogPage = () => {
     return (
         <>
             <Helmet>
                 <title>Каталог</title>
             </Helmet>
-            <Products />
+            <Catalog />
         </>
     )
 }
-export default ProductsPage
+export default CatalogPage

@@ -7,6 +7,7 @@
     align-items: center;
     text-align: center;
     gap: 20px;
+    padding: 200px 0 0 0;
 }
 .notFound__container h2 {
     font-size: 42px;
@@ -24,6 +25,9 @@
 /*----media-------------------------------------------*/
 
 @media (max-width: 768px) {
+    .notFound__container {
+        padding: 100px 0 0 0;
+    }
     .notFound__container h2 {
         font-size: 32px;
     }

@@ -100,10 +100,6 @@ button:active {
   filter: brightness(80%);
   transition: 0.2s;
 }
-::selection {
-  background-color: var(--mainColor);
-  color: var(--black);
-}
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {

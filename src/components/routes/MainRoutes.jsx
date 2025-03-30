@@ -2,7 +2,8 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from '../ProtectedRoute.jsx';
 import Main from '../Main/index.jsx';
-import Products from "../pages/userPages/ProductsPage.jsx";
+import Catalog from "../pages/userPages/CatalogPage.jsx";
+import Cart from "../pages/userPages/CartPage.jsx";
 import Registration from '../Registration/index.jsx';
 import Login from '../Login/index.jsx';
 import Account from '../Account/index.jsx';
@@ -13,10 +14,11 @@ const MainRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/products" element={<Products />} />
+            <Route path="/catalog" element={<Catalog />} />
 
-            {/* Публичные маршруты для регистрации и входа */}
+            {/* Публичные маршруты  */}
             <Route element={<ProtectedRoute isProtected={false} redirectTo="/account" />}>
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/login" element={<Login />} />
             </Route>

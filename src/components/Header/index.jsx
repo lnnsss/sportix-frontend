@@ -25,7 +25,8 @@ const Header = () => {
                     </div>
                     <nav className={`${s.header__menu} ${burgerActive ? s.active : ""}`}>
                         <ul className={s.header__list}>
-                            <HeaderLink path={"products"}>Каталог</HeaderLink>
+                            <HeaderLink path={"catalog"}>Каталог</HeaderLink>
+                            <HeaderLink path={"cart"}>Корзина</HeaderLink>
                             {
                                 token
                                     ? (

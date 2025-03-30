@@ -2,6 +2,9 @@ import { makeAutoObservable } from "mobx";
 import Cookies from "js-cookie";
 
 class TokenStore {
+    token = '';
+    isAdmin = false;
+
     constructor() {
         this.token = Cookies.get('jwt') || '';
         this.isAdmin = false;
@@ -9,9 +12,6 @@ class TokenStore {
         makeAutoObservable(this);
         this.updateRoles();
     }
-
-    token = '';
-    isAdmin = false;
 
     setToken = (newToken) => {
         this.token = newToken;
