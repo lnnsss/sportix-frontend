@@ -58,5 +58,5 @@
     padding: 10px;
 }
 .products__block:hover {
-    border-color: var(--blue);
+    border-color: var(--orange);
 }

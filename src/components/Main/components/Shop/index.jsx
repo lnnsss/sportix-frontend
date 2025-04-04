@@ -15,7 +15,7 @@ const Shop = () => {
                 </h2>
                 <div className={s.shop__buttons}>
                     <Link
-                        to="products"
+                        to="catalog"
                         className={`${s.shop__button} ${s.shop__button__color}`}
                     >
                         Товары

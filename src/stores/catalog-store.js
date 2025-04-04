@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
 class CatalogStore {
-    priceRange = { min: 0, max: 1000 };
+    priceRange = { min: 0, max: 99999 };
     brand = '';
     category = '';
     gender = '';

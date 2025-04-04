@@ -1,0 +1,139 @@
+.product {
+    width: 100%;
+    padding: 60px 0;
+    min-height: calc(100vh - 160px);
+    box-sizing: border-box;
+}
+
+.product__container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.productContent {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+}
+
+.productImageWrapper {
+    flex: 1 1 45%;
+    max-width: 500px;
+}
+
+.productImage {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    border: 1px solid var(--grey);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.productDetails {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.productTitle {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 10px;
+}
+
+.productBrand,
+.productCategory,
+.productGender {
+    font-size: 1rem;
+    color: #555;
+}
+.productBrand span,
+.productCategory span,
+.productGender span {
+    font-weight: 500;
+    color: var(--black);
+    margin-right: 5px;
+}
+
+.productPrice {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--mainColor);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.productDescription {
+    margin-top: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    width: 100%;
+}
+
+.productDescription h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.addToCartButton {
+    background-color: var(--mainColor);
+    color: var(--white);
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+/*----media---------------------------------*/
+
+@media (max-width: 768px) {
+    .productContent {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .productImageWrapper,
+    .productDetails {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .productImage {
+        max-height: 400px;
+    }
+
+    .productTitle {
+        font-size: 1.8rem;
+    }
+
+    .productPrice {
+        font-size: 1.6rem;
+    }
+
+    .addToCartButton {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product {
+        padding: 40px 0;
+    }
+    .productTitle {
+        font-size: 1.6rem;
+    }
+    .productPrice {
+        font-size: 1.4rem;
+    }
+}

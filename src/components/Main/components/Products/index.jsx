@@ -66,7 +66,6 @@ const products = [
     }
 ];
 
-
 const Products = () => {
     return (
         <section id="products" className={s.products}>

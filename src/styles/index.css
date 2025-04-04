@@ -7,11 +7,11 @@
 :root {
   --maxWidth: 1200px;
   --white: #ffffff;
-  --mainColor: #365467;
-  --underMainColor: #527f9b;
-  --blue: #00c3ff;
+  --mainColor: #403D39;
+  --underMainColor: #5e5c56;
+  --orange: #EB5E28;
   --grey: #abb4bb;
-  --black: #000000;
+  --black: #252422;
   --baseFontFamily: "Montserrat", sans-serif;
   --baseFontSize: 14px;
   --baseFontWeight: 300;
