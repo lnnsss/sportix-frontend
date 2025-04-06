@@ -1,10 +1,11 @@
 import React from 'react';
 import s from "./styles.module.css";
 import {useStores} from "../../stores/root-store-context.js";
+import {observer} from "mobx-react-lite";
 
 
 
-const Account = () => {
+const Account = observer(() => {
     const {
         account: { email, name, lastName }
     } = useStores()
@@ -32,6 +33,6 @@ const Account = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Account;

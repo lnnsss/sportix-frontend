@@ -1,0 +1,46 @@
+.admin {
+    padding: 40px 0;
+}
+
+.admin__container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--mainColor);
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1 1 250px;
+    padding: 20px;
+    background-color: var(--orange);
+    color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.cardTitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.cardNumber {
+    font-size: 32px;
+    font-weight: 700;
+}

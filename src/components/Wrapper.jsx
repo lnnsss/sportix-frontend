@@ -12,7 +12,7 @@ const Wrapper = observer(() => {
 
     return (
         <div className="wrapper">
-            {isAdmin ? <AdminLayout /> : <Layout />}
+            {!isAdmin ? <AdminLayout /> : <Layout />}
         </div>
     );
 });
