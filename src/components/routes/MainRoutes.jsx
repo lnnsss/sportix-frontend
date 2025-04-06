@@ -4,6 +4,7 @@ import ProtectedRoute from '../ProtectedRoute.jsx';
 import Main from '../Main/index.jsx';
 import Catalog from "../pages/userPages/CatalogPage.jsx";
 import Product from "../pages/userPages/ProductPage.jsx";
+import Reviews from "../pages/userPages/ReviewsPage.jsx";
 import Cart from "../pages/userPages/CartPage.jsx";
 import Registration from '../Registration/index.jsx';
 import Login from '../Login/index.jsx';
@@ -17,6 +18,7 @@ const MainRoutes = () => {
             <Route path="/" element={<Main />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/catalog/:id" element={<Product />} />
+            <Route path="/reviews" element={<Reviews />} />
 
             {/* Публичные маршруты  */}
             <Route element={<ProtectedRoute isProtected={false} redirectTo="/account" />}>

@@ -27,6 +27,7 @@ const Header = () => {
                         <ul className={s.header__list}>
                             <HeaderLink path={"catalog"}>Каталог</HeaderLink>
                             <HeaderLink path={"cart"}>Корзина</HeaderLink>
+                            <HeaderLink path={"reviews"}>Отзывы</HeaderLink>
                             {
                                 token
                                     ? (
