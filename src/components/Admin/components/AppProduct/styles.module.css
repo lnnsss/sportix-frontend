@@ -1,0 +1,67 @@
+.addProduct {
+    padding: 40px 0;
+}
+
+.addProduct__container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--mainColor);
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 14px;
+    color: var(--underMainColor);
+    margin-bottom: 8px;
+}
+
+.input, .textarea {
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid var(--grey);
+    border-radius: 8px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.input:focus, .textarea:focus {
+    border-color: var(--orange);
+    outline: none;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submitButton {
+    background-color: var(--orange);
+    color: var(--white);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    filter: brightness(110%);
+}
