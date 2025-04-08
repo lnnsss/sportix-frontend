@@ -4,8 +4,11 @@ import {Link} from "react-router-dom";
 
 const Registration = () => {
     const [formError, setFormError] = useState("");
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordRepeat, setPasswordRepeat] = useState("");
 
     const handleAddBtnClick = async (e) => {
         e.preventDefault();
@@ -14,9 +17,6 @@ const Registration = () => {
                 email,
                 password,
             };
-
-            // const response = await axios.post(`${backURL}/auth/registration`, data);
-            // console.log("Регистрация прошла успешно:", response.data);
 
             setEmail("");
             setPassword("");
@@ -34,6 +34,20 @@ const Registration = () => {
                     <h3>Регистрация</h3>
                     {formError && <h4 className={s.form__error}>{formError}</h4>}
                     <FormInput
+                        reason="name"
+                        text="Имя"
+                        type="text"
+                        value={name}
+                        setValue={setName}
+                    />
+                    <FormInput
+                        reason="lastName"
+                        text="Фамилия"
+                        type="text"
+                        value={lastName}
+                        setValue={setLastName}
+                    />
+                    <FormInput
                         reason="email"
                         text="Email"
                         type="text"
@@ -46,6 +60,13 @@ const Registration = () => {
                         type="password"
                         value={password}
                         setValue={setPassword}
+                    />
+                    <FormInput
+                        reason="passwordRepeat"
+                        text="Повторите пароль"
+                        type="password"
+                        value={passwordRepeat}
+                        setValue={setPasswordRepeat}
                     />
                     <button className={s.form__button} onClick={handleAddBtnClick}>
                         Зарегистрироваться
