@@ -5,7 +5,7 @@ class CartStore {
         {
             id: 1,
             name: 'Футболка',
-            price: 25,
+            price: 2005,
             brand: 'Nike',
             category: 'Одежда',
             gender: 'Мужской',
@@ -15,11 +15,11 @@ class CartStore {
         {
             id: 2,
             name: 'Кроссовки',
-            price: 80,
-            brand: 'Adidas',
+            price: 8000,
+            brand: 'Puma',
             category: 'Обувь',
             gender: 'Женский',
-            image: 'https://images.unsplash.com/photo-1606107557195-0a29a5b4aa16?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            image: 'https://cdn.sportmaster.ru/upload/mdm/media_content/resize/3b1/1008_800_2850/149114030299.jpg',
             quantity: 2,
         },
     ];;

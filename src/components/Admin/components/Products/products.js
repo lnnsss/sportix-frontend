@@ -52,7 +52,7 @@ export const products = [
     {
         id: "67893e8b7b0c465a87b3ab92",
         title: "Мяч футбольный",
-        brand: "adidas",
+        brand: "Adidas",
         price: 3699,
         imageUrl: "https://cdn.sportmaster.ru/upload/mdm/media_content/resize/ab9/1008_800_0987/135388120299.jpg",
         category: "Мячи",
@@ -62,7 +62,7 @@ export const products = [
     {
         id: "678959e4544ccf1eb4a21b9d",
         title: "Перчатки вратарские",
-        brand: "adidas",
+        brand: "Adidas",
         price: 8799,
         imageUrl: "https://cdn.sportmaster.ru/upload/mdm/media_content/resize/1d2/1008_800_b0ef/58866550299.jpg",
         category: "Аксессуары",

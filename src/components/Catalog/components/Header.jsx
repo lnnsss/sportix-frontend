@@ -9,7 +9,7 @@ const Header = observer(() => {
     } = useStores()
 
     return (
-        <div className={s.catalog__header}>
+        <div className={`__container ${s.catalog__header}`}>
             <div className={s.filter__group}>
                 <label htmlFor="minPrice">Мин. цена:</label>
                 <input
@@ -34,7 +34,10 @@ const Header = observer(() => {
                     <option value="">Все</option>
                     <option value="Nike">Nike</option>
                     <option value="Adidas">Adidas</option>
-                    <option value="Levi's">Puma</option>
+                    <option value="Puma">PUMA</option>
+                    <option value="Puma">FILA</option>
+                    <option value="Puma">Kappa</option>
+                    <option value="Puma">Puma</option>
                 </select>
             </div>
             <div className={s.filter__group}>
@@ -43,6 +46,7 @@ const Header = observer(() => {
                     <option value="">Все</option>
                     <option value="Одежда">Одежда</option>
                     <option value="Обувь">Обувь</option>
+                    <option value="Аксессуары">Аксессуары</option>
                 </select>
             </div>
             <div className={s.filter__group}>
@@ -51,6 +55,7 @@ const Header = observer(() => {
                     <option value="">Все</option>
                     <option value="Мужской">Мужской</option>
                     <option value="Женский">Женский</option>
+                    <option value="Унисекс">Унисекс</option>
                 </select>
             </div>
         </div>
