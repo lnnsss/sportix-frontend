@@ -1,37 +1,66 @@
 import React, {useState} from 'react';
 import s from "./styles.module.css"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useStores} from "../../stores/root-store-context.js";
+import {apiAuthURL} from "../../configs/constants.js";
+import Cookies from "js-cookie";
+import {jwtDecode} from "jwt-decode";
 
 const Login = () => {
     const [formError, setFormError] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate()
     const {
         token: { setToken }
     } = useStores()
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    const handleBtnClick = async (e) => {
+        e.preventDefault()
         try {
 
-            // const response = await axios.post(`${backURL}/auth/login`, {
-            //     email,
-            //     password,
-            // });
-            // setToken(response.data.token);
-            //
-            // console.log("Успешный вход:", response.data);
+            // тело запроса
+            const body = {
+                email: email.trim(),
+                password: password.trim(),
+            };
 
-            setEmail("");
-            setPassword("");
-            setFormError("");
+            // проверка на пустые поля
+            if ( !email.trim() || !password.trim() ) {
+                return setFormError("Все поля должны быть заполнены")
+            }
+
+            // проверка на email
+            if (!/\S+@\S+\.\S+/.test(email.trim())) {
+                return setFormError("Некорректный email");
+            }
+
+            // запрос на сервер
+            const response = await axios.post(`${apiAuthURL}/login`, body);
+
+            // очистка полей
+            setEmail("")
+            setPassword("")
+            setFormError("")
+
+            // Сохранение токена в cookies
+            setToken(response.data.content.token);
+            Cookies.set('jwt', response.data.content.token, { secure: true, sameSite: 'Strict' });
+
+            // переход на следующую страницу
+            const tokenPayload = jwtDecode(response.data.content.token);
+            if (tokenPayload.roles && Array.isArray(tokenPayload.roles) && tokenPayload.roles.includes('ADMIN')) {
+                navigate('/admin');
+            } else {
+                navigate('/account');
+            }
+
         } catch (err) {
-            console.error("Ошибка при входе:", err);
-            setFormError(err.response.data.message);
+            setFormError(err.response?.data.message || "Произошла ошибка при входе.");
+            console.error(err)
         }
-    };
+    }
 
     return (
         <section className={s.login}>
@@ -53,7 +82,7 @@ const Login = () => {
                         value={password}
                         setValue={setPassword}
                     />
-                    <button className={s.form__button} onClick={handleLogin}>
+                    <button className={s.form__button} onClick={handleBtnClick}>
                         Войти
                     </button>
                     <span className={s.form__text}>

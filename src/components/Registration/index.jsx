@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import s from "./styles.module.css"
-import {Link} from "react-router-dom";
+import Cookies from "js-cookie";
+import { jwtDecode } from 'jwt-decode';
+import {Link, useNavigate} from "react-router-dom";
+import {useStores} from "../../stores/root-store-context.js";
+import axios from "axios";
+import {apiAuthURL} from "../../configs/constants.js";
 
 const Registration = () => {
     const [formError, setFormError] = useState("");
@@ -9,23 +14,66 @@ const Registration = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordRepeat, setPasswordRepeat] = useState("");
+    const {
+        token: { setToken }
+    } = useStores()
+    const navigate = useNavigate();
 
-    const handleAddBtnClick = async (e) => {
-        e.preventDefault();
+    const handleBtnClick = async (e) => {
+        e.preventDefault()
         try {
-            const data = {
-                email,
-                password,
+
+            // тело запроса (форматирование имени, фамилии)
+            const body = {
+                name: (name.trim().charAt(0).toUpperCase() + name.trim().slice(1).toLowerCase()).trim(),
+                lastName: (lastName.trim().charAt(0).toUpperCase() + lastName.trim().slice(1).toLowerCase()).trim(),
+                email: email.trim(),
+                password: password.trim(),
             };
 
-            setEmail("");
-            setPassword("");
-            setFormError("");
+            // проверка на пустые поля
+            if (!name.trim() || !lastName.trim() || !email.trim() || !password.trim() ||!passwordRepeat.trim() ) {
+                return setFormError("Все поля должны быть заполнены")
+            }
+
+            // проверка на email
+            if (!/\S+@\S+\.\S+/.test(email.trim())) {
+                return setFormError("Некорректный email");
+            }
+
+            // проверка на совпадение паролей
+            if (password !== passwordRepeat) {
+                return setFormError("Пароли не совпадают")
+            }
+
+            // запрос на сервер
+            const response = await axios.post(`${apiAuthURL}/registration`, body);
+
+            // очистка полей
+            setName("")
+            setLastName("")
+            setEmail("")
+            setPassword("")
+            setPasswordRepeat("")
+            setFormError("")
+
+            // Сохранение токена в cookies
+            setToken(response.data.content.token);
+            Cookies.set('jwt', response.data.content.token, { secure: true, sameSite: 'Strict' });
+
+            // переход на следующую страницу
+            const tokenPayload = jwtDecode(response.data.content.token);
+            if (tokenPayload.roles && Array.isArray(tokenPayload.roles) && tokenPayload.roles.includes('ADMIN')) {
+                navigate('/admin');
+            } else {
+                navigate('/account');
+            }
+
         } catch (err) {
-            console.error("Ошибка при регистрации:", err);
-            setFormError(err.response.data.message);
+            setFormError(err.response?.data.message || "Произошла ошибка при регистрации.");
+            console.error(err)
         }
-    };
+    }
 
     return (
         <section className={s.registration}>
@@ -68,7 +116,7 @@ const Registration = () => {
                         value={passwordRepeat}
                         setValue={setPasswordRepeat}
                     />
-                    <button className={s.form__button} onClick={handleAddBtnClick}>
+                    <button className={s.form__button} onClick={handleBtnClick}>
                         Зарегистрироваться
                     </button>
                     <span className={s.form__text}>
