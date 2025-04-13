@@ -1,13 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from "../styles.module.css";
 import {observer} from "mobx-react-lite";
 import {useStores} from "../../../stores/root-store-context.js";
 import Product from "./Product.jsx";
+import axios from "axios";
+import {apiProductsURL} from "../../../configs/constants.js";
 
 const Products = observer(() => {
     const {
-        catalog: { products, priceRange, brand, category, gender }
+        catalog: { products, priceRange, brand, category, gender, setProducts }
     } = useStores();
+
+    // Запрос
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(apiProductsURL)
+
+                const arr = response.data.content
+
+                setProducts(arr)
+
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        fetchProducts()
+    }, [])
 
     // Фильтрация товаров
     const filteredProducts = products.filter(product => {
@@ -22,6 +41,7 @@ const Products = observer(() => {
         return priceMatch && brandMatch && categoryMatch && genderMatch;
     });
 
+    // Проверка на наличие товаров
     if (filteredProducts.length === 0) {
         return <div className={s.noProductsMessage}>Нет товаров.</div>;
     }

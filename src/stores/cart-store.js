@@ -28,6 +28,10 @@ class CartStore {
         makeAutoObservable(this);
     }
 
+    setCartItems = (newCartItems) => {
+        this.cartItems = newCartItems
+    }
+
     addToCart = (item) => {
         const existingItemIndex = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
 

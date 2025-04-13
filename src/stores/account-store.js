@@ -1,13 +1,33 @@
 import { makeAutoObservable } from 'mobx';
 
 class AccountStore {
-    email = "iluha777@gmail.com"
-    password = "passworD123"
-    name = "Илюха"
-    lastName = "Офицеров"
+    email = ""
+    password = ""
+    name = ""
+    lastName = ""
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    setEmail = (newEmail) => {
+        this.email = newEmail;
+    }
+    setPassword = (newPassword) => {
+        this.password = newPassword;
+    }
+    setName = (newName) => {
+        this.name = newName;
+    }
+    setLastName = (newLastName) => {
+        this.lastName = newLastName;
+    }
+
+    clear = () => {
+        this.email = "";
+        this.password = "";
+        this.name = "";
+        this.lastName = "";
     }
 
 }

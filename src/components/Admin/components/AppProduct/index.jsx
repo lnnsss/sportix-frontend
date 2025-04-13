@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import s from "./styles.module.css";
 import FormGroup from "./components/FormGroup.jsx";
+import {useStores} from "../../../../stores/root-store-context.js";
+import {observer} from "mobx-react-lite";
+import axios from "axios";
+import {apiProductsURL} from "../../../../configs/constants.js";
+import {useNavigate} from "react-router-dom";
 
-const AddProduct = () => {
+const AddProduct = observer(() => {
     const [formData, setFormData] = useState({
         title: '',
         brand: '',
@@ -12,6 +17,10 @@ const AddProduct = () => {
         gender: '',
         description: ''
     });
+    const navigate = useNavigate()
+    const {
+        token: { token }
+    } = useStores()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,6 +29,35 @@ const AddProduct = () => {
             [name]: value
         }));
     };
+
+    const handleAddProduct = () => {
+        const fetch = async () => {
+            try {
+
+                const dataToSend = {
+                    ...formData,
+                    price: Number(formData.price) || 0
+                };
+
+                const response = await axios.post(
+                    apiProductsURL,
+                    dataToSend,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+
+                navigate('admin/products')
+
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        fetch()
+    }
 
     return (
         <div className={s.addProduct}>
@@ -34,11 +72,11 @@ const AddProduct = () => {
                     <FormGroup name="Пол" title="gender" value={formData.gender} handleChange={handleChange}  />
                     <FormGroup name="Описание" title="description" value={formData.description} handleChange={handleChange}  />
 
-                    <button className={s.submitButton}>Добавить</button>
+                    <button onClick={handleAddProduct} className={s.submitButton}>Добавить</button>
                 </form>
             </div>
         </div>
     );
-};
+});
 
 export default AddProduct;

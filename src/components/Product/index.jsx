@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from "./styles.module.css";
+import {useParams} from "react-router-dom";
+import axios from "axios";
+import {apiProductsURL} from "../../configs/constants.js";
 
 
 const Product = () => {
-
-    const product = {
+    const [product, setProduct] = useState({
         id: "67893e8b7b0c465a87b3ab8d",
         title: "Мяч футбольный",
         brand: "PUMA",
@@ -13,7 +15,24 @@ const Product = () => {
         category: "Мячи",
         gender: "Унисекс",
         description: "Классический футбольный мяч PUMA для тренировок и любительских игр на различных покрытиях. Модель отличается прочностью и хорошим контролем."
-    };
+    });
+    const params = useParams();
+    const productId = params.id; // id продукта
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const response = await axios.get(`${apiProductsURL}/${productId}`);
+
+                const product = response.data.content;
+                setProduct(product);
+
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        fetchProduct();
+    }, [productId])
 
     return (
         <div className={s.product}>
