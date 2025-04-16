@@ -29,7 +29,7 @@ class TokenStore {
         if (this.token) {
             try {
                 const payload = JSON.parse(atob(this.token.split('.')[1]));
-                return payload._id;
+                return payload.id;
             } catch (error) {
                 console.error("Ошибка при декодировании токена:", error);
                 return undefined;
