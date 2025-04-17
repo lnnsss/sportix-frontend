@@ -27,7 +27,7 @@ const Account = observer(() => {
             try {
                 const response = await axios.get(`${apiUsersURL}/${id}`);
 
-                const { email, name, lastName } = response.data.content;
+                const { email, name, lastName } = response.data.content.user;
                 setEmail(email)
                 setName(name)
                 setLastName(lastName)

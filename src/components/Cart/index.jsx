@@ -8,7 +8,7 @@ import {apiUsersURL} from "../../configs/constants.js";
 
 const Cart = observer(() => {
     const {
-        cart: {cartItems, setCartItems, removeFromCart, changeQuantity},
+        cart: {cartItems, setCartItems},
         token: { getID }
     } = useStores()
     const id = getID()
@@ -16,8 +16,8 @@ const Cart = observer(() => {
     useEffect( () => {
         const fetchCart = async () => {
             try {
-                const response = await axios.get(`${apiUsersURL}/${id}`)
-                const items = response.data.content.cart.items
+                const response = await axios.get(`${apiUsersURL}/${id}/cart`)
+                const items = response.data.content.cartItems
                 setCartItems(items)
 
             } catch (err) {}
@@ -28,7 +28,7 @@ const Cart = observer(() => {
 
     // Сумма корзины
     const calculateTotal = () => {
-        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+        return cartItems.reduce((total, item) => total + item.price * item.count, 0).toFixed(2);
     };
 
     return useObserver(() => (
@@ -41,7 +41,7 @@ const Cart = observer(() => {
                 ) : (
                     <>
                         <div className={s.cart__items}>
-                            {cartItems.map(item => <Product key={item.id} id={item.id} image={item.image} name={item.name} price={item.price} quantity={item.quantity} />)}
+                            {cartItems.map(item => <Product key={item.id} id={item.productId} count={item.count} />)}
                         </div>
 
                         <div className={s.cart__summary}>

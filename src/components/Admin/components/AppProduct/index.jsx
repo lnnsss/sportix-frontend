@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import s from "./styles.module.css";
 import FormGroup from "./components/FormGroup.jsx";
-import {useStores} from "../../../../stores/root-store-context.js";
 import {observer} from "mobx-react-lite";
 import axios from "axios";
 import {apiProductsURL} from "../../../../configs/constants.js";
@@ -18,9 +17,6 @@ const AddProduct = observer(() => {
         description: ''
     });
     const navigate = useNavigate()
-    const {
-        token: { token }
-    } = useStores()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -41,13 +37,7 @@ const AddProduct = observer(() => {
 
                 const response = await axios.post(
                     apiProductsURL,
-                    dataToSend,
-                    {
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json'
-                        }
-                    }
+                    dataToSend
                 );
 
                 navigate('admin/products')

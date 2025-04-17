@@ -6,16 +6,7 @@ import {apiProductsURL} from "../../configs/constants.js";
 
 
 const Product = () => {
-    const [product, setProduct] = useState({
-        id: "67893e8b7b0c465a87b3ab8d",
-        title: "Мяч футбольный",
-        brand: "PUMA",
-        price: 2499,
-        imageUrl: "https://cdn.sportmaster.ru/upload/mdm/media_content/resize/c42/1008_800_aa43/90436150299.jpg",
-        category: "Мячи",
-        gender: "Унисекс",
-        description: "Классический футбольный мяч PUMA для тренировок и любительских игр на различных покрытиях. Модель отличается прочностью и хорошим контролем."
-    });
+    const [product, setProduct] = useState();
     const params = useParams();
     const productId = params.id; // id продукта
 

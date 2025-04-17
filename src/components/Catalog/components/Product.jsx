@@ -1,12 +1,29 @@
 import React from 'react';
 import s from "../styles.module.css";
 import { Link } from "react-router-dom";
+import {useStores} from "../../../stores/root-store-context.js";
+import {observer} from "mobx-react-lite";
+import axios from "axios";
+import {apiCartsURL} from "../../../configs/constants.js";
 
-const Product = ({ id, imageUrl, title, brand, category, price }) => {
+const Product = observer(({ id, imageUrl, title, brand, category, price }) => {
+    const {
+        token: { getID }
+    } = useStores()
+    const cartId = getID();
 
-    const handleAddToCart = (event) => {
-        event.stopPropagation();
+    const handleAddToCart = async (event) => {
         event.preventDefault();
+        event.stopPropagation();
+
+        try {
+
+            const data = { productId: id };
+            const response = await axios.put(`${apiCartsURL}/${cartId}/add`, data);
+
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -21,6 +38,6 @@ const Product = ({ id, imageUrl, title, brand, category, price }) => {
             </button>
         </Link>
     );
-};
+});
 
 export default Product;
