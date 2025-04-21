@@ -5,7 +5,7 @@ import axios from "axios";
 import {apiUsersURL} from "../../../../configs/constants.js";
 
 const Users = () => {
-    const [users, setUsers] = useState();
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
