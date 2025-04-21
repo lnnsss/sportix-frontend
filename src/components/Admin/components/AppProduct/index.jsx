@@ -26,34 +26,28 @@ const AddProduct = observer(() => {
         }));
     };
 
-    const handleAddProduct = () => {
-        const fetch = async () => {
-            try {
+    const handleAddProduct = async (e) => {
+        e.preventDefault()
 
-                const dataToSend = {
-                    ...formData,
-                    price: Number(formData.price) || 0
-                };
+        const productData = {
+            ...formData,
+            price: Number(formData.price) || 0
+        };
 
-                const response = await axios.post(
-                    apiProductsURL,
-                    dataToSend
-                );
+        try {
+            await axios.post(apiProductsURL, productData);
 
-                navigate('admin/products')
-
-            } catch (err) {
-                console.error(err)
-            }
+            navigate('/admin/products')
+        } catch (err) {
+            console.error(err);
         }
-        fetch()
-    }
+    };
 
     return (
         <div className={s.addProduct}>
             <div className={`__container ${s.addProduct__container}`}>
                 <h1 className={s.title}>Добавить Продукт</h1>
-                <form className={s.form}>
+                <form onSubmit={handleAddProduct} className={s.form}>
                     <FormGroup name="Название" title="title" value={formData.title} handleChange={handleChange}  />
                     <FormGroup name="Бренд" title="brand" value={formData.brand} handleChange={handleChange}  />
                     <FormGroup type="number" name="Цена" title="price" value={formData.price} handleChange={handleChange}  />
@@ -62,7 +56,7 @@ const AddProduct = observer(() => {
                     <FormGroup name="Пол" title="gender" value={formData.gender} handleChange={handleChange}  />
                     <FormGroup name="Описание" title="description" value={formData.description} handleChange={handleChange}  />
 
-                    <button onClick={handleAddProduct} className={s.submitButton}>Добавить</button>
+                    <button type="submit" className={s.submitButton}>Добавить</button>
                 </form>
             </div>
         </div>
