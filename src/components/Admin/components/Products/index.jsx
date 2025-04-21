@@ -6,7 +6,7 @@ import axios from "axios";
 import {apiProductsURL} from "../../../../configs/constants.js";
 
 const Products = () => {
-    const [products, setProducts] = useState()
+    const [products, setProducts] = useState([])
 
     useEffect(() => {
         const fetchProducts = async () => {
