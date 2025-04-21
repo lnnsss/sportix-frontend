@@ -10,6 +10,7 @@ import Registration from '../Registration/index.jsx';
 import Login from '../Login/index.jsx';
 import Account from '../Account/index.jsx';
 import NotFound from '../../components/pages/userPages/NotFoundPage.jsx';
+import ResetPassword from "../pages/userPages/ResetPasswordPage.jsx";
 
 const MainRoutes = () => {
 
@@ -19,6 +20,7 @@ const MainRoutes = () => {
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/catalog/:id" element={<Product />} />
             <Route path="/reviews" element={<Reviews />} />
+            <Route path="/resetPassword" element={<ResetPassword />} />
 
             {/* Публичные маршруты  */}
             <Route element={<ProtectedRoute isProtected={false} redirectTo="/account" />}>

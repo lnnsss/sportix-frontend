@@ -120,18 +120,26 @@ const Registration = () => {
                         Зарегистрироваться
                     </button>
                     <span className={s.form__text}>
-            Уже есть аккаунт?
-            <Link className={s.form__text__link} to="/login">
-              Войти
-            </Link>
-          </span>
+                        <div>
+                        Забыли пароль?
+                        <Link className={s.form__text__link} to="/resetPassword">
+                          Сбросить
+                        </Link>
+                        </div>
+                        <div>
+                        Уже есть аккаунт?
+                        <Link className={s.form__text__link} to="/login">
+                          Войти
+                        </Link>
+                        </div>
+                    </span>
                 </form>
             </div>
         </section>
     );
 };
 
-const FormInput = ({ reason, text, type, value, setValue }) => {
+const FormInput = ({reason, text, type, value, setValue}) => {
     const handleChangeInputValue = (e) => {
         setValue(e.target.value);
     };

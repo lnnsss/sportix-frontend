@@ -86,11 +86,19 @@ const Login = () => {
                         Войти
                     </button>
                     <span className={s.form__text}>
-            Ещё нет аккаунта?
-            <Link className={s.form__text__link} to="/registration">
-              Зарегистрироваться
-            </Link>
-          </span>
+                        <div>
+                            Забыли пароль?
+                            <Link className={s.form__text__link} to="/resetPassword">
+                              Сбросить
+                            </Link>
+                        </div>
+                        <div>
+                            Ещё нет аккаунта?
+                            <Link className={s.form__text__link} to="/registration">
+                              Зарегистрироваться
+                            </Link>
+                        </div>
+                    </span>
                 </form>
             </div>
         </section>
@@ -103,7 +111,7 @@ const FormInput = ({reason, text, type, value, setValue}) => {
     };
     return (
         <div className={s.form__input}>
-            <label htmlFor={reason}>{text}</label>
+        <label htmlFor={reason}>{text}</label>
             <input
                 type={type}
                 id={reason}
