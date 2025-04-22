@@ -11,6 +11,7 @@ const Product = observer(({id, count }) => {
         token: { getID }
     } = useStores()
     const cartId = getID()
+    const [productId, setProductId] = useState(null);
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
     const [imageUrl, setImageUrl] = useState("");
@@ -22,8 +23,9 @@ const Product = observer(({id, count }) => {
             try {
                 const response = await axios.get(`${apiProductsURL}/${id}`);
 
-                const { title, price, imageUrl } = response.data.content;
+                const { title, price, imageUrl, id } = response.data.content;
 
+                setProductId(id)
                 setTitle(title || "");
                 setPrice(price || 0);
                 setImageUrl(imageUrl || "");
@@ -41,21 +43,21 @@ const Product = observer(({id, count }) => {
     // добавление товара
     const handleAdd = async () => {
         changeCount(id, count + 1)
-        await axios.put(`${apiCartsURL}/${cartId}/add`, {productId: id});
+        await axios.put(`${apiCartsURL}/${cartId}/add`, {productId});
         changeTotalPrice(price)
     }
 
     // убавление товара
     const handleDecrease = async () => {
         changeCount(id, count - 1)
-        await axios.put(`${apiCartsURL}/${cartId}/add`, {productId: id, count: -1 });
+        await axios.put(`${apiCartsURL}/${cartId}/add`, {productId});
         changeTotalPrice(-1 * price)
     }
 
     // удаление товара
     const handleRemove = async () => {
         removeFromCart(id)
-        await axios.put(`${apiCartsURL}/${cartId}/add`, {productId: id, count: (-1 * count) });
+        await axios.put(`${apiCartsURL}/${cartId}/remove`, {productId});
     }
 
     return (
