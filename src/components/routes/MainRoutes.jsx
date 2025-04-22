@@ -21,10 +21,10 @@ const MainRoutes = () => {
             <Route path="/catalog/:id" element={<Product />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/resetPassword" element={<ResetPassword />} />
+            <Route path="/cart" element={<Cart />} />
 
             {/* Публичные маршруты  */}
             <Route element={<ProtectedRoute isProtected={false} redirectTo="/account" />}>
-                <Route path="/cart" element={<Cart />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/login" element={<Login />} />
             </Route>
