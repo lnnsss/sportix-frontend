@@ -20,8 +20,9 @@ const Cart = observer(() => {
                 const items = response.data.content.cartItems
                 setCartItems(items)
 
-            } catch (err) {}
-            console.error(err)
+            } catch (err) {
+                console.error(err)
+            }
         }
         fetchCart()
     }, [id])
@@ -41,7 +42,7 @@ const Cart = observer(() => {
                 ) : (
                     <>
                         <div className={s.cart__items}>
-                            {cartItems.map(item => <Product key={item.id} id={item.productId} count={item.count} />)}
+                            {cartItems.map(item => <Product key={item.id} id={item.id} count={item.count} />)}
                         </div>
 
                         <div className={s.cart__summary}>
