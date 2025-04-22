@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from "./styles.module.css";
 import {useParams} from "react-router-dom";
 import axios from "axios";
@@ -6,7 +6,7 @@ import {apiProductsURL} from "../../configs/constants.js";
 
 
 const Product = () => {
-    const [product, setProduct] = useState();
+    const [product, setProduct] = useState({});
     const params = useParams();
     const productId = params.id; // id продукта
 
