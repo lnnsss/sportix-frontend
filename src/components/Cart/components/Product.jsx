@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Product = observer(({id, count }) => {
     const {
-        cart: {removeFromCart, changeCount},
+        cart: {removeFromCart, changeCount, changeTotalPrice},
         token: { getID }
     } = useStores()
     const cartId = getID()
@@ -27,6 +27,7 @@ const Product = observer(({id, count }) => {
                 setTitle(title || "");
                 setPrice(price || 0);
                 setImageUrl(imageUrl || "");
+                changeTotalPrice(price)
 
             } catch (err) {
                 console.error(err);
@@ -41,12 +42,14 @@ const Product = observer(({id, count }) => {
     const handleAdd = async () => {
         changeCount(id, count + 1)
         await axios.put(`${apiCartsURL}/${cartId}/add`, {productId: id});
+        changeTotalPrice(price)
     }
 
     // убавление товара
     const handleDecrease = async () => {
         changeCount(id, count - 1)
         await axios.put(`${apiCartsURL}/${cartId}/add`, {productId: id, count: -1 });
+        changeTotalPrice(-1 * price)
     }
 
     // удаление товара
