@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 class CartStore {
     cartItems = [];
+    totalPrice = 0
 
     constructor() {
         makeAutoObservable(this);
@@ -34,6 +35,9 @@ class CartStore {
                 this.removeFromCart(itemId);
             }
         }
+    }
+    changeTotalPrice = (price) => {
+        this.totalPrice = this.totalPrice + price
     }
 }
 
