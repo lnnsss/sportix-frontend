@@ -8,7 +8,7 @@ import {apiUsersURL} from "../../configs/constants.js";
 
 const Cart = observer(() => {
     const {
-        cart: {cartItems, setCartItems},
+        cart: {cartItems, setCartItems, totalPrice},
         token: { getID }
     } = useStores()
     const id = getID()
@@ -27,11 +27,6 @@ const Cart = observer(() => {
         fetchCart()
     }, [id])
 
-    // Сумма корзины
-    const calculateTotal = () => {
-        return cartItems.reduce((total, item) => total + item.price * item.count, 0).toFixed(2);
-    };
-
     return useObserver(() => (
         <div className={s.cart}>
             <div className={`${s.__container} ${s.cart__container}`}>
@@ -46,7 +41,7 @@ const Cart = observer(() => {
                         </div>
 
                         <div className={s.cart__summary}>
-                            <p>Итого: {calculateTotal()} руб.</p>
+                            <p>Итого: {totalPrice} руб.</p>
                             <button className={s.cart__checkout}>Купить</button>
                         </div>
                     </>
